@@ -1,0 +1,55 @@
+/**
+ * Remove general stuff
+ */
+#page > header {
+  display: none;
+}
+
+#columns > .columns-inner {
+  padding-top: 0;
+}
+
+/**
+ * Global results formatting
+ */
+#bidondgeq-clienttime {
+  padding-left: 1em;
+}
+
+.bidondgeq-party {
+  border: 1px solid #000;
+  float: left;
+  width: 150px;
+}
+
+.bidondgeq-party-name {
+  background-color: #ccc;
+  padding: 5px;
+}
+
+.bidondgeq-party-result {
+  font-weight: bold;
+  padding: 5px;
+}
+
+#dgeq-global-stats {
+  clear: both;
+}
+
+/**
+ * Circ results formatting
+ */
+
+#bidondcircgeq-clienttime {
+  padding-left: 1em;
+}
+
+.bidondgeq-candidate {
+  border: 1px solid #000;
+  float: left;
+  width: 150px;
+}
+
+#dgeq-circ-stats {
+  clear: both;
+}

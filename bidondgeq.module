@@ -1,0 +1,40 @@
+<?php
+
+function bidondgeq_menu() {
+  $items = array();
+
+  $items['dgeq'] = array(
+    'title' => 'DGEQ election results',
+    'page callback' => 'bidondgeq_page',
+    'access arguments' => array('access content'),
+  );
+
+  $items['dgeq/%'] = array(
+    'title' => 'DGEQ election results',
+    'page callback' => 'bidondgeq_page_circ',
+    'page arguments' => array(1),
+    'access arguments' => array('access content'),
+  );
+
+  return $items;
+}
+
+function bidondgeq_page() {
+  drupal_add_js('http://dgeq.org/media_pre/sommaire.js', 'external');
+  drupal_add_js(drupal_get_path('module', 'bidondgeq') . '/bidondgeq.js');
+  drupal_add_js(drupal_get_path('module', 'bidondgeq') . '/dgeq_concordance.js');
+  drupal_add_css(drupal_get_path('module', 'bidondgeq') . '/bidondgeq.css');
+
+  return '<div id="dgeqmain">You must enable JavaScript for this to work</div>'
+    . '<div id="dgeqsource">Source: <a href="http://www.dgeq.org">www.dgeq.org</a></div>';
+}
+
+function bidondgeq_page_circ($circ) {
+  drupal_add_js('http://dgeq.org/media_pre/' . $circ . '.js', 'external');
+  drupal_add_js(drupal_get_path('module', 'bidondgeq') . '/bidondgeqcirc.js');
+  drupal_add_css(drupal_get_path('module', 'bidondgeq') . '/bidondgeq.css');
+
+  return '<div id="dgeqcircmain">You must enable JavaScript for this to work</div>'
+    . '<div id="dgeqsource">Source: <a href="http://www.dgeq.org">www.dgeq.org</a></div>';
+}
+
