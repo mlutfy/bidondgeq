@@ -34,8 +34,6 @@ Drupal.behaviors.bidondgeqhandler = {
     // Stats
     $('#dgeq-heuresommaire').html('Heure m-a-j DGEQ: ' + HeureSommaire);
     $('#dgeq-bureauxvote').html('Bureaux de vote compl&eacute;t&eacute;s: ' + BureauxVoteTot + '/' + BureauxVoteMax + ' (' + BureauxVotePc + '%)');
-    $('#dgeq-votesexerces').html('Votes exerc&eacute;s: ' + VotesExerces);
-    $('#dgeq-votesrejtot').html('Votes rejet&eacute;s: ' + VotesRejTot);
     $('#dgeq-votes').html('Votes: ' + VotesExerces + ', dont ' + VotesValTot + ' (' + Math.round(VotesValTot/VotesExerces*100) + '%) valides, ' + VotesRejTot + ' (' + Math.round(VotesRejTot/VotesExerces*100) + '%) rejet&eacute;s.');
     $('#dgeq-electinstrits').html('&Eacute;lecteurs inscrits: ' + ElectInscrits + ' (' + TauxParticip + '% de participation)');
     bidondgeq_localtime();
