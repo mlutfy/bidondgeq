@@ -38,16 +38,16 @@ Drupal.behaviors.bidondgeqhandler = {
     $('#dgeq-electinstrits').html('&Eacute;lecteurs inscrits: ' + ElectInscrits + ' (' + TauxParticip + '% de participation)');
     bidondgeq_localtime();
 
-    // Districts to watch
+    // Ridings to watch (in reverse order since they are prepended)
     var dgeqWatch = [
-      383, // mercier
-      381, // gouin
-      423, // laurier-dorion
-      439, // lavel-des-rapides
-      397, // verdun
+      329, // nicolet
       113, // sherbrooke
       363, // assomption
-      329, // nicolet
+      439, // laval-des-rapides
+      397, // verdun
+      423, // laurier-dorion
+      381, // gouin
+      383, // mercier
     ]; 
 
     bidondgeq_watch_select();
@@ -119,13 +119,17 @@ function bidondgeq_localtime() {
  */
 function bidondgeq_watch_select() {
   $('#dgeq-circ-watch-select-wrapper')
-    .append('<select id="dgeq-circ-watch-widget"><option value="">- select -</option></select>');
+    .append('<select id="dgeq-circ-watch-widget"><option value="">- ' + Drupal.t('Select') + ' -</option></select>');
 
   $.each(dgeqcirc, function(key, value) {
     $('#dgeq-circ-watch-widget')
       .append($("<option></option>")
       .attr("value", key)
       .text(value)); 
+  });
+
+  $('#dgeq-circ-watch-widget').change(function() {
+    bidondgeq_watch_add($(this).val());
   });
 }
 
@@ -134,7 +138,7 @@ function bidondgeq_watch_select() {
  */
 function bidondgeq_watch_add(key) {
   var url = '/fr/dgeq/' + key;
-  $('#dgeq-circ-watch-results').append('<iframe src="' + url + '" width="500px" height="200px" />');
+  $('#dgeq-circ-watch-results').prepend('<iframe src="' + url + '" width="600px" height="265px" />');
 }
 
 })(jQuery);
