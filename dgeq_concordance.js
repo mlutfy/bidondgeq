@@ -1,3 +1,9 @@
+/**
+ * List of Quebec ridings for the 2012 elections
+ *
+ * SOURCE: http://www.dgeq.org/doc/concordance.csv
+ */
+
 var dgeqcirc = [ ];
 
 dgeqcirc[579] = "Abitibi-Est"
