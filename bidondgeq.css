@@ -9,6 +9,19 @@
   padding-top: 0;
 }
 
+#breadcrumb {
+  display: none;
+}
+
+#page .block-inner,
+#page .breadcrumb,
+#page .region-help,
+#page .messages,
+#page #main-content > header,
+#page #attribution {
+  margin: 0;
+}
+
 /**
  * Global results formatting
  */
