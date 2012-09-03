@@ -1,14 +1,16 @@
 (function ($) {
 
 /**
- * Handle DGEQ info for district
+ * Handle DGEQ data for ridings obtained from calls to their .js
+ * files with global javascript variables.
+ * Duplicates code from bidondgeq.js because I was very lazy.
  */
 Drupal.behaviors.bidondgeqcirchandler = {
   attach: function (context, settings) {
     $('#dgeqcircmain').html('');
 
     $('#dgeqcircmain').append('<div id="bidondgeqcirc-time"><span id="dgeq-heuresommaire"></span><span id="bidondgeq-clienttime"></span></div>');
-    $('#dgeqcircmain').append('<div id="dgeq-bureauxvote"></div>');
+    $('#bidondgeqcirc-time').append('<span id="dgeq-bureauxvote"></span>');
     $('#dgeqcircmain').append('<div id="dgeq-parties"></div>');
     $('#dgeqcircmain').append('<div id="dgeq-circ-stats"></div>');
     $('#dgeq-circ-stats').append('<div id="dgeq-votesvaltot"></div>');
@@ -67,7 +69,6 @@ function bidondgeqcirc_localtime() {
   var now = new Date();
   var output = now.getHours() + ':' + now.getMinutes() + ':' + now.getSeconds();
   $('#bidondgeq-clienttime').html('Heure locale: ' + output);
-  // setInterval(function(){ clock();}, 1000);
 }
 
 })(jQuery);
