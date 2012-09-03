@@ -9,13 +9,10 @@ Drupal.behaviors.bidondgeqhandler = {
 
     // Main content sections
     $('#dgeqmain').append('<div id="bidondgeq-time"><span id="dgeq-heuresommaire"></span><span id="bidondgeq-clienttime"></span></div>');
-    $('#dgeqmain').append('<div id="dgeq-avance">Avance (non-final sauf si l\'heure DGEQ indique FINAL):</div>');
+    $('#dgeqmain').append('<div id="dgeq-bureauxvote"></div>');
     $('#dgeqmain').append('<div id="dgeq-parties"></div>');
     $('#dgeqmain').append('<div id="dgeq-global-stats"></div>');
-    $('#dgeq-global-stats').append('<div id="dgeq-bureauxvote"></div>');
-    // $('#dgeq-global-stats').append('<div id="dgeq-bureauxvotemax"></div>');
-    // $('#dgeq-global-stats').append('<div id="dgeq-bureauxvotepc"></div>');
-    $('#dgeq-global-stats').append('<div id="dgeq-votesvaltot"></div>');
+    $('#dgeq-global-stats').append('<div id="dgeq-votes"></div>');
     $('#dgeq-global-stats').append('<div id="dgeq-votesrejtot"></div>');
     $('#dgeq-global-stats').append('<div id="dgeq-votesexerces"></div>');
     $('#dgeq-global-stats').append('<div id="dgeq-electinstrits"></div>');
@@ -31,26 +28,27 @@ Drupal.behaviors.bidondgeqhandler = {
       $('#dgeq-parties').append(bidondgeq_partybox(key, val));
     });
 
+    bidondgeq_setlead(Table_Avance);
+
     // Stats
     $('#dgeq-heuresommaire').html('Heure m-a-j DGEQ: ' + HeureSommaire);
     $('#dgeq-bureauxvote').html('Bureaux de vote compl&eacute;t&eacute;s: ' + BureauxVoteTot + '/' + BureauxVoteMax + ' (' + BureauxVotePc + '%)');
     $('#dgeq-votesexerces').html('Votes exerc&eacute;s: ' + VotesExerces);
     $('#dgeq-votesrejtot').html('Votes rejet&eacute;s: ' + VotesRejTot);
-    $('#dgeq-votesvaltot').html('Votes: ' + VotesValTot);
-    $('#dgeq-electinstrits').html('&Eacute;lecteurs inscrits: ' + ElectInscrits);
-    $('#dgeq-tauxparticip').html('Taux de participation: ' + TauxParticip + '%');
+    $('#dgeq-votes').html('Votes: ' + VotesExerces + ', dont ' + VotesValTot + ' (' + Math.round(VotesValTot/VotesExerces*100) + '%) valides, ' + VotesRejTot + ' (' + Math.round(VotesRejTot/VotesExerces*100) + '%) rejet&eacute;s.');
+    $('#dgeq-electinstrits').html('&Eacute;lecteurs inscrits: ' + ElectInscrits + ' (' + TauxParticip + '% de participation)');
     bidondgeq_localtime();
 
     // Districts to watch
     var dgeqWatch = [
       383, // mercier
-//      381, // gouin
-//      423, // laurier-dorion
-//      439, // lavel-des-rapides
-//      397, // verdun
-//      113, // sherbrooke
-//      363, // assomption
-//      329, // nicolet
+      381, // gouin
+      423, // laurier-dorion
+      439, // lavel-des-rapides
+      397, // verdun
+      113, // sherbrooke
+      363, // assomption
+      329, // nicolet
     ]; 
 
     bidondgeq_watch_select();
@@ -61,21 +59,44 @@ Drupal.behaviors.bidondgeqhandler = {
   }
 }
 
+/**
+ * Make the name shorter.
+ * Ex: Parti Liberal du Quebec - Quebec liberal party = Parti Liberal du Quebec
+ */
+function bidondgeq_fixname(name) {
+  if ((x = name.indexOf('-')) > 0) {
+    name = name.substr(0, x).trim();
+  }
+
+  if ((x = name.indexOf('/')) > 0) {
+    name = name.substr(0, x).trim();
+  }
+
+  return name;
+}
+
 function bidondgeq_partybox(key, data) {
   var id = 'dgeqparty' + key;
-  var partyname = data[0];
-
-  if ((x = partyname.indexOf('-')) > 0) {
-    partyname = partyname.substr(0, x).trim();
-  }
-  if ((x = partyname.indexOf('/')) > 0) {
-    partyname = partyname.substr(0, x).trim();
-  }
+  var partyname = bidondgeq_fixname(data[0]);
 
   return '<div id="' + id + '" class="bidondgeq-party">'
     + '<div id="' + id + '-name" class="bidondgeq-party-name">' + partyname + '</div>'
     + '<div id="' + id + '-result" class="bidondgeq-party-result">' + data[2] + ' (' + data[3] + '%)</div>'
     + '</div>';
+}
+
+function bidondgeq_setlead(table) {
+  var valmax = 0;
+  var idmax = 0;
+
+  $.each(table, function(key, val) {
+    if (val[2] > valmax) {
+      idmax = key;
+      valmax = val[2];
+    }
+  });
+
+  $('#dgeqparty' + idmax + '-result').addClass('bidondgeq-party-leading');
 }
 
 function bidondgeq_localtime() {
@@ -99,7 +120,7 @@ function bidondgeq_watch_select() {
 
 function bidondgeq_watch_add(key) {
   var url = '/fr/dgeq/' + key;
-  $('#dgeq-circ-watch-results').append('<iframe src="' + url + '" width="200px" height="100px" />');
+  $('#dgeq-circ-watch-results').append('<iframe src="' + url + '" width="500px" height="200px" />');
 }
 
 })(jQuery);

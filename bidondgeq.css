@@ -41,8 +41,11 @@
 }
 
 .bidondgeq-party-result {
-  font-weight: bold;
   padding: 5px;
+}
+
+.bidondgeq-party-leading {
+  font-weight: bold;
 }
 
 #dgeq-global-stats {

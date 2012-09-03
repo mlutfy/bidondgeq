@@ -34,7 +34,6 @@ function bidondgeq_page_circ($circ) {
   drupal_add_js(drupal_get_path('module', 'bidondgeq') . '/bidondgeqcirc.js');
   drupal_add_css(drupal_get_path('module', 'bidondgeq') . '/bidondgeq.css');
 
-  return '<div id="dgeqcircmain">You must enable JavaScript for this to work</div>'
-    . '<div id="dgeqsource">Source: <a href="http://www.dgeq.org">www.dgeq.org</a></div>';
+  return '<div id="dgeqcircmain">You must enable JavaScript for this to work</div>';
 }
 
