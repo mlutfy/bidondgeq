@@ -1,13 +1,14 @@
 (function ($) {
 
 /**
- * Handle DGEQ info
+ * Handle DGEQ data obtained from calls to their .js files with
+ * global javascript variables.
  */
 Drupal.behaviors.bidondgeqhandler = {
   attach: function (context, settings) {
     $('#dgeqmain').html('');
 
-    // Main content sections
+    // Main content placeholders
     $('#dgeqmain').append('<div id="bidondgeq-time"><span id="dgeq-heuresommaire"></span><span id="bidondgeq-clienttime"></span></div>');
     $('#dgeqmain').append('<div id="dgeq-bureauxvote"></div>');
     $('#dgeqmain').append('<div id="dgeq-parties"></div>');
@@ -75,6 +76,9 @@ function bidondgeq_fixname(name) {
   return name;
 }
 
+/**
+ * Returns an html box with the party name and score
+ */
 function bidondgeq_partybox(key, data) {
   var id = 'dgeqparty' + key;
   var partyname = bidondgeq_fixname(data[0]);
@@ -85,6 +89,9 @@ function bidondgeq_partybox(key, data) {
     + '</div>';
 }
 
+/**
+ * Adds a css class on the leading party
+ */
 function bidondgeq_setlead(table) {
   var valmax = 0;
   var idmax = 0;
@@ -99,13 +106,19 @@ function bidondgeq_setlead(table) {
   $('#dgeqparty' + idmax + '-result').addClass('bidondgeq-party-leading');
 }
 
+/**
+ * Show the current time, so that the user can compare the time of the
+ * request with the time of the DGEQ data (shown elsewhere).
+ */
 function bidondgeq_localtime() {
   var now = new Date();
   var output = now.getHours() + ':' + now.getMinutes() + ':' + now.getSeconds();
   $('#bidondgeq-clienttime').html('Heure locale: ' + output);
-  // setInterval(function(){ clock();}, 1000);
 }
 
+/**
+ * Creates a 'select' html element so that the user can add another riding.
+ */
 function bidondgeq_watch_select() {
   $('#dgeq-circ-watch-select-wrapper')
     .append('<select id="dgeq-circ-watch-widget"><option value="">- select -</option></select>');
@@ -118,6 +131,9 @@ function bidondgeq_watch_select() {
   });
 }
 
+/**
+ * Creates a new iframe with results of a specific riding.
+ */
 function bidondgeq_watch_add(key) {
   var url = '/fr/dgeq/' + key;
   $('#dgeq-circ-watch-results').append('<iframe src="' + url + '" width="500px" height="200px" />');

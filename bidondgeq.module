@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Implements hook_menu().
+ */
 function bidondgeq_menu() {
   $items = array();
 
@@ -19,21 +22,31 @@ function bidondgeq_menu() {
   return $items;
 }
 
+/**
+ * Page callback for 'dgeq'
+ * see bidondgeq_menu().
+ */
 function bidondgeq_page() {
   drupal_add_js('http://dgeq.org/media_pre/sommaire.js', 'external');
   drupal_add_js(drupal_get_path('module', 'bidondgeq') . '/bidondgeq.js');
   drupal_add_js(drupal_get_path('module', 'bidondgeq') . '/dgeq_concordance.js');
   drupal_add_css(drupal_get_path('module', 'bidondgeq') . '/bidondgeq.css');
 
-  return '<div id="dgeqmain">You must enable JavaScript for this to work</div>'
+  // Create a placeholder for content that will be populated with javascript.
+  return '<div id="dgeqmain">You must enable JavaScript for this to work.</div>'
     . '<div id="dgeqsource">Source: <a href="http://www.dgeq.org">www.dgeq.org</a></div>';
 }
 
+/**
+ * Page callback for 'dgeq/%'
+ * see bidondgeq_menu().
+ */
 function bidondgeq_page_circ($circ) {
   drupal_add_js('http://dgeq.org/media_pre/' . $circ . '.js', 'external');
   drupal_add_js(drupal_get_path('module', 'bidondgeq') . '/bidondgeqcirc.js');
   drupal_add_css(drupal_get_path('module', 'bidondgeq') . '/bidondgeq.css');
 
-  return '<div id="dgeqcircmain">You must enable JavaScript for this to work</div>';
+  // Create a placeholder for content that will be populated with javascript.
+  return '<div id="dgeqcircmain">You must enable JavaScript for this to work.</div>';
 }
 
