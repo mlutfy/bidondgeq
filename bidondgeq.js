@@ -138,7 +138,8 @@ function bidondgeq_watch_select() {
  */
 function bidondgeq_watch_add(key) {
   var url = '/fr/dgeq/' + key;
-  $('#dgeq-circ-watch-results').prepend('<iframe src="' + url + '" width="600px" height="265px" />');
+  $('#dgeq-circ-watch-results').prepend('<iframe id="circ' + key + '" style="display: none;" src="' + url + '" width="600px" height="265px" />');
+  $('#circ' + key).slideDown();
 }
 
 })(jQuery);
