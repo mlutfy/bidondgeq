@@ -34,7 +34,7 @@ function bidondgeq_page() {
 
   // Create a placeholder for content that will be populated with javascript.
   return '<div id="dgeqmain">You must enable JavaScript for this to work.</div>'
-    . '<div id="dgeqsource">Source: <a href="http://www.dgeq.org">www.dgeq.org</a>, code: <a hreg="https://github.com/mlutfy/bidondgeq">github</a></div>';
+    . '<div id="dgeqsource">Source: <a href="http://www.dgeq.org">www.dgeq.org</a>, code: <a href="https://github.com/mlutfy/bidondgeq">github</a></div>';
 }
 
 /**
