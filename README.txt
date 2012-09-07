@@ -6,8 +6,18 @@ does not cache the results. The module simply calls the
 json files hosted by the dgeq. A high-traffic site should
 fetch those files with a cron, and hit its local cache.
 
-Latest source:
+The DGEQ.org license requires websites using their data to
+display the following:
 
+« Comprends des données ouvertes octroyées sous la licence d'utilisation
+des données ouvertes du Directeur général des élections du Québec disponible
+à l’adresse Web : www.dge.org. L'octroi de la licence n’implique aucune
+approbation par le Directeur général des élections du Québec de
+l'utilisation des données ouvertes qui en est faite. »
+
+See www.dgeq.org for more information on the license.
+
+Latest source of this module:
 https://github.com/mlutfy/bidondgeq
 
 Author:
