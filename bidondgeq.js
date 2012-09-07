@@ -29,7 +29,7 @@ Drupal.behaviors.bidondgeqhandler = {
       $('#dgeq-parties').append(bidondgeq_partybox(key, val));
     });
 
-    bidondgeq_setlead(Table_Avance);
+    //bidondgeq_setlead(Table_Avance);
 
     // Stats
     $('#dgeq-heuresommaire').html('Heure m-a-j DGEQ: ' + HeureSommaire);
@@ -45,6 +45,7 @@ Drupal.behaviors.bidondgeqhandler = {
       363, // assomption
       439, // laval-des-rapides
       397, // verdun
+      389, // sainte marie st jacques
       423, // laurier-dorion
       381, // gouin
       383, // mercier
@@ -138,7 +139,7 @@ function bidondgeq_watch_select() {
  */
 function bidondgeq_watch_add(key) {
   var url = '/fr/dgeq/' + key;
-  $('#dgeq-circ-watch-results').prepend('<iframe id="circ' + key + '" style="display: none;" src="' + url + '" width="600px" height="265px" />');
+  $('#dgeq-circ-watch-results').prepend('<iframe id="circ' + key + '" style="display: none;" src="' + url + '" width="600px" height="400px" />');
   $('#circ' + key).slideDown();
 }
 

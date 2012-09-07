@@ -27,14 +27,16 @@ function bidondgeq_menu() {
  * see bidondgeq_menu().
  */
 function bidondgeq_page() {
-  drupal_add_js('http://dgeq.org/media_pre/sommaire.js', 'external');
+  drupal_add_js('http://dgeq.org/media/sommaire.js', 'external');
   drupal_add_js(drupal_get_path('module', 'bidondgeq') . '/bidondgeq.js');
   drupal_add_js(drupal_get_path('module', 'bidondgeq') . '/dgeq_concordance.js');
   drupal_add_css(drupal_get_path('module', 'bidondgeq') . '/bidondgeq.css');
 
   // Create a placeholder for content that will be populated with javascript.
-  return '<div id="dgeqmain">You must enable JavaScript for this to work.</div>'
-    . '<div id="dgeqsource">Source: <a href="http://www.dgeq.org">www.dgeq.org</a>, code: <a href="https://github.com/mlutfy/bidondgeq">github</a></div>';
+  return '<p id="dgeqintro">' . t("Données ouvertes provenant de <a href='http://www.dgeq.org'>dgeq.org</a>. C'est une preuve de concept, un test pour m'amuser. Cet outil n'est pas destiné au grand public.") . '</p>'
+    . '<div id="dgeqmain">You must enable JavaScript for this to work.</div>'
+    . '<div id="dgeqsource">Source: <a href="http://www.dgeq.org">www.dgeq.org</a>, code: <a href="https://github.com/mlutfy/bidondgeq">github</a></div>'
+    . "<div id='dgeqmention'>Comprends des données ouvertes octroyées sous la licence d'utilisation des données ouvertes du Directeur général des élections du Québec disponible à l'adresse Web : <a href='http://www.dgeq.org'>www.dgeq.org</a>. L'octroi de la licence n'implique aucune approbation par le Directeur général des élections du Québec de l'utilisation des données ouvertes qui en est faite.</div>";
 }
 
 /**
@@ -42,7 +44,7 @@ function bidondgeq_page() {
  * see bidondgeq_menu().
  */
 function bidondgeq_page_circ($circ) {
-  drupal_add_js('http://dgeq.org/media_pre/' . $circ . '.js', 'external');
+  drupal_add_js('http://dgeq.org/media/' . $circ . '.js', 'external');
   drupal_add_js(drupal_get_path('module', 'bidondgeq') . '/bidondgeqcirc.js');
   drupal_add_css(drupal_get_path('module', 'bidondgeq') . '/bidondgeq.css');
 

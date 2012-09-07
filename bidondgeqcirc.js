@@ -31,7 +31,7 @@ Drupal.behaviors.bidondgeqcirchandler = {
       $('#dgeq-parties').append(bidondgeq_candidatebox(key, val));
     });
 
-    bidondgeqcirc_setlead(Table_Candidats);
+    //bidondgeqcirc_setlead(Table_Candidats);
 
     // Stats
     $('#dgeq-heuresommaire').html('Heure m-a-j DGEQ: ' + HeureRes);
